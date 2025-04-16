@@ -1,6 +1,6 @@
 import InputMask from 'comigo-tech-react-input-mask';
-import React from "react";
-import { Button, FormRadio, Container, Divider, Form, FormGroup, Select, FormInput, Icon, FormSelect } from 'semantic-ui-react';
+import React, { useState } from "react";
+import { Button, Container, Divider, Form, FormGroup, FormInput, FormRadio, Icon } from 'semantic-ui-react';
 
 const estados = [
     { key: 'AC', value: 'AC', text: 'Acre' },
@@ -33,31 +33,26 @@ const estados = [
 ];
 
 export default function FormEntregador() {
+    const [ativo, setAtivo] = useState('');
+
+    const handleAtivoChange = (e, { value }) => {
+        setAtivo(value);
+    };
 
     return (
-
         <div>
-
             <div style={{ marginTop: '3%' }}>
-
                 <Container textAlign='justified' >
-
                     <h2> <span style={{ color: 'darkgray' }}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
-
                     <Divider />
-
                     <div style={{ marginTop: '4%' }}>
-
                         <Form>
-
                             <Form.Group widths='equal'>
-
                                 <Form.Input
                                     required
                                     fluid
                                     label='Nome'>
                                 </Form.Input>
-
                                 <Form.Input
                                     required
                                     fluid
@@ -68,21 +63,16 @@ export default function FormEntregador() {
                                     />
                                 </Form.Input>
                                 <Form.Input
-
                                     fluid
                                     label='RG'>
-
                                 </Form.Input>
-
                             </Form.Group>
 
                             <Form.Group>
-
                                 <Form.Input
                                     fluid
                                     label='DT Nascimento'
-                                    width={6}
-                                >
+                                    width={6}>
                                     <InputMask
                                         mask="99/99/9999"
                                         maskChar={null}
@@ -94,12 +84,10 @@ export default function FormEntregador() {
                                     required
                                     label='Fone Celular'
                                     width={6}>
-
                                     <InputMask
                                         mask="(99) 9999.99999"
                                     />
                                 </Form.Input>
-
                                 <Form.Input
                                     fluid
                                     label='Fone Fixo'
@@ -108,52 +96,42 @@ export default function FormEntregador() {
                                         mask="(99) 9999.9999"
                                     />
                                 </Form.Input>
-
                                 <Form.Input
                                     fluid
                                     label='QTD de Entregas Realizadas'
-                                    width={10}
-                                >
+                                    width={10}>
                                 </Form.Input>
                                 <Form.Input
                                     fluid
                                     label='Valor por Frete'
-                                    width={6}
-                                >
+                                    width={6}>
                                 </Form.Input>
-
                             </Form.Group>
+
                             <FormGroup widths='equal'>
                                 <FormInput
                                     label="Rua"
-                                    width={20}
-                                >
+                                    width={20}>
                                 </FormInput>
-
                                 <FormInput
                                     label="Número"
-                                    width={80}
-                                >
+                                    width={80}>
                                 </FormInput>
                             </FormGroup>
-
 
                             <FormGroup widths='equal'>
                                 <FormInput
                                     label="Bairro"
-                                    width={20}
-                                >
+                                    width={20}>
                                 </FormInput>
-
                                 <FormInput
                                     label="Cidade"
-                                    width={80}
-                                >
+                                    width={80}>
                                 </FormInput>
                                 <FormInput
                                     label="Cep"
-                                    width={80}
-                                ><InputMask
+                                    width={80}>
+                                    <InputMask
                                         mask="999.999-99"
                                     />
                                 </FormInput>
@@ -166,12 +144,9 @@ export default function FormEntregador() {
                                     placeholder="Selecione o Estado"
                                 />
                             </Form>
-                            <div>
-                                <div></div>
-                            </div>
+
                             <FormInput widths='equal'
                                 label="Complemento">
-
                             </FormInput>
 
                             <FormGroup inline>
@@ -179,52 +154,44 @@ export default function FormEntregador() {
                                 <FormRadio
                                     label='Sim'
                                     value='s'
-                                    checked={value === 's'}
-                                    onChange={this.handleChange}
+                                    checked={ativo === 's'}
+                                    onChange={handleAtivoChange}
                                 />
                                 <FormRadio
                                     label='Não'
                                     value='n'
-                                    checked={value === 'n'}
-                                    onChange={this.handleChange}
+                                    checked={ativo === 'n'}
+                                    onChange={handleAtivoChange}
                                 />
                             </FormGroup>
                         </Form>
 
                         <div style={{ marginTop: '4%' }}>
-
                             <Button
                                 type="button"
                                 inverted
                                 circular
                                 icon
                                 labelPosition='left'
-                                color='orange'
-                            >
+                                color='orange'>
                                 <Icon name='reply' />
                                 Voltar
                             </Button>
-
                             <Button
                                 inverted
                                 circular
                                 icon
                                 labelPosition='left'
                                 color='blue'
-                                floated='right'
-                            >
+                                floated='right'>
                                 <Icon name='save' />
                                 Salvar
                             </Button>
-
                         </div>
 
                     </div>
-
                 </Container>
             </div>
         </div>
-
     );
-
 }
