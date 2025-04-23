@@ -2,6 +2,8 @@ import InputMask from 'comigo-tech-react-input-mask';
 import React, { useState } from "react";
 import { Button, Container, Divider, Form, FormGroup, FormInput, FormRadio, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
+import axios from "axios";
+
 
 const estados = [
     { key: 'AC', value: 'AC', text: 'Acre' },
@@ -31,10 +33,19 @@ const estados = [
     { key: 'SP', value: 'SP', text: 'São Paulo' },
     { key: 'SE', value: 'SE', text: 'Sergipe' },
     { key: 'TO', value: 'TO', text: 'Tocantins' }
+    
 ];
 
 export default function FormEntregador() {
-    const [ativo, setAtivo] = useState('');
+
+    const [nome, setNome] = useState();
+    const [cpf, setCpf] = useState();
+    const [rg, setRg]= useState();
+    const [dataNascimento, setDataNascimento] = useState();
+    const [foneCelular, setFoneCelular] = useState();
+    const [foneFixo, setFoneFixo] = useState();
+    const [ativo, setAtivo] = useState(true);
+
 
     const handleAtivoChange = (e, { value }) => {
         setAtivo(value);
@@ -42,7 +53,7 @@ export default function FormEntregador() {
 
     return (
         <div>
-                            <MenuSistema tela={'entregador'} />
+            <MenuSistema tela={'entregador'} />
 
             <div style={{ marginTop: '3%' }}>
                 <Container textAlign='justified' >
@@ -63,6 +74,9 @@ export default function FormEntregador() {
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
+                                        value={cpf}
+			                            onChange={e => setCpf(e.target.value)}
+
                                     />
                                 </Form.Input>
                                 <Form.Input
@@ -156,15 +170,13 @@ export default function FormEntregador() {
                                 <label>Ativo</label>
                                 <FormRadio
                                     label='Sim'
-                                    value='s'
-                                    checked={ativo === 's'}
-                                    onChange={handleAtivoChange}
+                                    checked={ativo}
+                                    onChange={e=>setAtivo(true)}
                                 />
                                 <FormRadio
                                     label='Não'
-                                    value='n'
-                                    checked={ativo === 'n'}
-                                    onChange={handleAtivoChange}
+                                    checked={!ativo}
+                                    onChange={e=>setAtivo(false)}
                                 />
                             </FormGroup>
                         </Form>
